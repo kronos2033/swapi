@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from '../Header/Header';
 import RandomPlanet from '../RandomPlanet/RandomPlanet';
@@ -8,6 +8,11 @@ import PersonDetails from '../PersonDetails/PersonDetails';
 import './App.css';
 
 const App = () => {
+  const [selectedPerson, setSelectedPerson] = useState(null);
+  const onSelected = (id) => {
+    console.log(id);
+    setSelectedPerson(id);
+  };
   return (
     <div>
       <Header />
@@ -15,10 +20,10 @@ const App = () => {
 
       <div className='row mb2'>
         <div className='col-md-6'>
-          <ItemList />
+          <ItemList onSelected={onSelected} />
         </div>
         <div className='col-md-6'>
-          <PersonDetails />
+          <PersonDetails personId={selectedPerson} />
         </div>
       </div>
     </div>
